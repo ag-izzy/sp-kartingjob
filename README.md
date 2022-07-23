@@ -1,3 +1,6 @@
+Preview:
+https://www.youtube.com/watch?v=47G8e3l62kA
+
 Installation
 
     Download the script and put it in the [resource] folder.
