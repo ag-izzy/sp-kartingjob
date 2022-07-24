@@ -1,5 +1,5 @@
 QBCore = nil
-local QBCore = exports['sp-core']:GetCoreObject()
+local QBCore = exports['qb-core']:GetCoreObject()
 
 RegisterServerEvent('sp-kartingjob:giveitem')
 AddEventHandler('sp-kartingjob:giveitem', function(item, count)
