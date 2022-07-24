@@ -75,6 +75,8 @@ QBCore.Functions.CreateUseableItem("burger-heartstopper", function(source, item)
     end
 end)
 
+Karting Cars For The Garage System: https://www.filemail.com/d/zrjdhvteiommxjl
+
 Map For The Script: https://forum.cfx.re/uploads/short-url/mG2RdkXTckktnR0wJAcfaFiKY4v.rar
 
 Done (;
