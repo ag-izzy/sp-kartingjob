@@ -1,5 +1,5 @@
 QBCore = nil
-local QBCore = exports['sp-core']:GetCoreObject()
+local QBCore = exports['qb-core']:GetCoreObject()
 
 RegisterNetEvent("sp-kartingjob:SpawnKarting20", function() 
 local coords = vector4(-164.5816, -2135.381, 16.00028, 291.14218)
@@ -7,7 +7,7 @@ QBCore.Functions.SpawnVehicle('Kart20', function(veh)
 QBCore.Functions.Notify('Kart 1 Spawn', 'success', 5000)
     SetVehicleNumberPlateText(veh, 'TEST')
     SetEntityHeading(veh, coords.w)
-    exports['sp-fuel']:SetFuel(veh, 100.0)
+    exports['LegacyFuel']:SetFuel(veh, 100.0)
     TaskWarpPedIntoVehicle(PlayerPedId(), veh, -1)
     TriggerEvent("vehiclekeys:client:SetOwner", QBCore.Functions.GetPlate(veh))
     SetVehicleEngineOn(veh, true, true)
@@ -20,7 +20,7 @@ RegisterNetEvent("sp-kartingjob:SpawnKarting3", function()
     QBCore.Functions.Notify('Kart 2 Spawn', 'success', 5000)
         SetVehicleNumberPlateText(veh, 'TEST')
         SetEntityHeading(veh, coords.w)
-        exports['sp-fuel']:SetFuel(veh, 100.0)
+        exports['LegacyFuel']:SetFuel(veh, 100.0)
         TaskWarpPedIntoVehicle(PlayerPedId(), veh, -1)
         TriggerEvent("vehiclekeys:client:SetOwner", QBCore.Functions.GetPlate(veh))
         SetVehicleEngineOn(veh, true, true)
@@ -33,7 +33,7 @@ RegisterNetEvent("sp-kartingjob:SpawnKarting4", function()
     QBCore.Functions.Notify('Kart 3 Spawn', 'success', 5000)  
         SetVehicleNumberPlateText(veh, 'TEST')
         SetEntityHeading(veh, coords.w)
-        exports['sp-fuel']:SetFuel(veh, 100.0)
+        exports['LegacyFuel']:SetFuel(veh, 100.0)
         TaskWarpPedIntoVehicle(PlayerPedId(), veh, -1)
         TriggerEvent("vehiclekeys:client:SetOwner", QBCore.Functions.GetPlate(veh))
         SetVehicleEngineOn(veh, true, true)
@@ -46,7 +46,7 @@ RegisterNetEvent("sp-kartingjob:SpawnKarting5", function()
     QBCore.Functions.Notify('Kart 4 Spawn', 'success', 5000)
         SetVehicleNumberPlateText(veh, 'TEST')
         SetEntityHeading(veh, coords.w)
-        exports['sp-fuel']:SetFuel(veh, 100.0)
+        exports['LegacyFuel']:SetFuel(veh, 100.0)
         TaskWarpPedIntoVehicle(PlayerPedId(), veh, -1)
         TriggerEvent("vehiclekeys:client:SetOwner", QBCore.Functions.GetPlate(veh))
         SetVehicleEngineOn(veh, true, true)
@@ -59,7 +59,7 @@ RegisterNetEvent("sp-kartingjob:SpawnKarting6", function()
     QBCore.Functions.Notify('Kart 5 Spawn', 'success', 5000)
         SetVehicleNumberPlateText(veh, 'TEST')
         SetEntityHeading(veh, coords.w)
-        exports['sp-fuel']:SetFuel(veh, 100.0)
+        exports['LegacyFuel']:SetFuel(veh, 100.0)
         TaskWarpPedIntoVehicle(PlayerPedId(), veh, -1)
         TriggerEvent("vehiclekeys:client:SetOwner", QBCore.Functions.GetPlate(veh))
         SetVehicleEngineOn(veh, true, true)
@@ -388,7 +388,7 @@ RegisterNetEvent("sp-kartingjob:shop", function()
     TriggerServerEvent("inventory:server:OpenInventory", "shop", "karting", Config.Items)
 end)
 
-exports['sp-target']:AddBoxZone("Karting Garage", vector3(-163.33, -2129.61, 16.7), 1.6, 0.2, {
+exports['qb-target']:AddBoxZone("Karting Garage", vector3(-163.33, -2129.61, 16.7), 1.6, 0.2, {
 	name = "Karting Garage",
     heading=290,
 	debugPoly = false,
@@ -407,7 +407,7 @@ exports['sp-target']:AddBoxZone("Karting Garage", vector3(-163.33, -2129.61, 16.
 	distance = 2.5
 })
 
-exports['sp-target']:AddBoxZone("Karting Food", vector3(-153.36, -2124.67, 16.71), 1.0, 2.2, {
+exports['qb-target']:AddBoxZone("Karting Food", vector3(-153.36, -2124.67, 16.71), 1.0, 2.2, {
 	name = "Karting Food",
     heading=348,
 	debugPoly = false,
@@ -426,7 +426,7 @@ exports['sp-target']:AddBoxZone("Karting Food", vector3(-153.36, -2124.67, 16.71
 	distance = 2.5
 })
 
-exports['sp-target']:AddBoxZone("ToggleDuty", vector3(-156.2, -2126.43, 16.71), 1.8, 1.2, {
+exports['qb-target']:AddBoxZone("ToggleDuty", vector3(-156.2, -2126.43, 16.71), 1.8, 1.2, {
 	name = "Toggle Duty",
 	heading = 15.0,
 	debugPoly = false,
@@ -436,7 +436,7 @@ exports['sp-target']:AddBoxZone("ToggleDuty", vector3(-156.2, -2126.43, 16.71), 
 	options = {
 		{
             type = "client",
-            event = "sp-policejob:ToggleDuty",
+            event = "qb-policejob:ToggleDuty",
 			icon = "fas fa-clipboard",
 			label = "Toggle Duty",
 			job = "karting",
@@ -453,6 +453,7 @@ AddEventHandler('karting:fix',function()
 		local vehicle = GetVehiclePedIsIn(playerPed, false)
 		SetVehicleEngineHealth(vehicle, 9999)
 		SetVehiclePetrolTankHealth(vehicle, 9999)
+        GetVehicleFuelLevel(vehicle)
 		SetVehicleFixed(vehicle)
         QBCore.Functions.Notify('Car Fixed', 'success', 5000)
 	else
